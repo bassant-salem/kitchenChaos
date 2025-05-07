@@ -15,4 +15,4 @@ MonoBehaviour:
   kitchenObjectSOList:
   - {fileID: 11400000, guid: 064789d078c460c4b93a0a6a192d80df, type: 2}
   - {fileID: 11400000, guid: 4bb24ba4720425b48a14f8f5f20eb430, type: 2}
-  recipeName: 
+  recipeName: salad
