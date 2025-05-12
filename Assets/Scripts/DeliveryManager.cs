@@ -23,7 +23,8 @@ public class DeliveryManager : MonoBehaviour
     private float spawnRecipeTimer;
     private float spawnRecipeTimerMax = 4f;
     private int waitingRecipesMax = 4;
-    private int succeefulRecipesAmount = 0;
+    private int successfulRecipesAmount;
+
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class DeliveryManager : MonoBehaviour
         {
             spawnRecipeTimer = spawnRecipeTimerMax;
 
-            if (waitingRecipeSOList.Count < waitingRecipesMax)
+            if (KitchenGameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < waitingRecipesMax)
             {
                 RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
 
@@ -85,7 +86,9 @@ public class DeliveryManager : MonoBehaviour
                 if (plateContentsMatchesRecipe)
                 {
                     // Player delivered the correct recipe!
-                    succeefulRecipesAmount++;
+
+                    successfulRecipesAmount++;
+
                     waitingRecipeSOList.RemoveAt(i);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
@@ -98,15 +101,16 @@ public class DeliveryManager : MonoBehaviour
         // No matches found!
         // Player did not deliver a correct recipe
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
-
     }
 
     public List<RecipeSO> GetWaitingRecipeSOList()
     {
         return waitingRecipeSOList;
     }
-    public int GetSuccessfulRecipesAmount() 
+
+    public int GetSuccessfulRecipesAmount()
     {
-        return succeefulRecipesAmount;
+        return successfulRecipesAmount;
     }
+
 }
