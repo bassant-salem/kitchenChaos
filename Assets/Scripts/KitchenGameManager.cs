@@ -28,7 +28,7 @@ public class KitchenGameManager : MonoBehaviour
     private State state;
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 40f;
+    private float gamePlayingTimerMax = 90f;
     private bool isGamePaused = false;
 
 
